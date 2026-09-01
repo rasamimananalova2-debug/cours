@@ -1,0 +1,6 @@
+{
+  "name": "EduSmart - Academic Portal",
+  "description": "Plateforme d'apprentissage académique intelligente avec lecteur de cours, gestion avancée des médias FastImage avec cache & lazy loading, tuteur EduBot IA, mode sombre natif et thèmes personnalisables.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #000666;
+    --color-primary-container: #1a237e;
+    --color-on-primary: #ffffff;
+    --color-on-primary-container: #8690ee;
+    
+    --color-secondary: #4b41e1;
+    --color-secondary-container: #645efb;
+    --color-on-secondary: #ffffff;
+    
+    --color-tertiary: #00201c;
+    --color-tertiary-container: #003732;
+    --color-tertiary-fixed: #89f5e7;
+    --color-tertiary-fixed-dim: #6bd8cb;
+    
+    --color-background: #f8f9ff;
+    --color-on-background: #0b1c30;
+    
+    --color-surface: #f8f9ff;
+    --color-surface-dim: #cbdbf5;
+    --color-surface-bright: #f8f9ff;
+    --color-surface-container-lowest: #ffffff;
+    --color-surface-container-low: #eff4ff;
+    --color-surface-container: #e5eeff;
+    --color-surface-container-high: #dce9ff;
+    --color-surface-container-highest: #d3e4fe;
+    
+    --color-on-surface: #0b1c30;
+    --color-on-surface-variant: #454652;
+    
+    --color-outline: #767683;
+    --color-outline-variant: #c6c5d4;
+    
+    --color-error: #ba1a1a;
+    --color-error-container: #ffdad6;
+    --color-on-error-container: #93000a;
+  }
+
+  .dark {
+    --color-primary: #bdc2ff;
+    --color-primary-container: #1a237e;
+    --color-on-primary: #000666;
+    --color-on-primary-container: #e0e0ff;
+    
+    --color-secondary: #c3c0ff;
+    --color-secondary-container: #4b41e1;
+    --color-on-secondary: #0f0069;
+    
+    --color-tertiary: #89f5e7;
+    --color-tertiary-container: #005049;
+    --color-tertiary-fixed: #89f5e7;
+    --color-tertiary-fixed-dim: #6bd8cb;
+    
+    --color-background: #0b1326;
+    --color-on-background: #eaf1ff;
+    
+    --color-surface: #0e172e;
+    --color-surface-dim: #090f1f;
+    --color-surface-bright: #1b2644;
+    --color-surface-container-lowest: #070c18;
+    --color-surface-container-low: #101c38;
+    --color-surface-container: #162447;
+    --color-surface-container-high: #1e305e;
+    --color-surface-container-highest: #263c75;
+    
+    --color-on-surface: #eaf1ff;
+    --color-on-surface-variant: #a0a6b8;
+    
+    --color-outline: #5a647d;
+    --color-outline-variant: #2d3852;
+    
+    --color-error: #ffb4ab;
+    --color-error-container: #93000a;
+    --color-on-error-container: #ffdad6;
+  }
+
+  /* Teal Focus Theme */
+  [data-theme="teal"] {
+    --color-primary: #005049;
+    --color-primary-container: #003732;
+    --color-secondary: #00897b;
+    --color-surface-container: #e0f2f1;
+    --color-surface-container-low: #e8f5e9;
+  }
+  .dark[data-theme="teal"] {
+    --color-primary: #6bd8cb;
+    --color-primary-container: #003732;
+    --color-secondary: #89f5e7;
+    --color-surface-container: #113330;
+    --color-surface-container-low: #0c2624;
+  }
+
+  /* Cyberpunk / Electric Indigo Theme */
+  [data-theme="cyberpunk"] {
+    --color-primary: #33148d;
+    --color-primary-container: #4f23cb;
+    --color-secondary: #7c3aed;
+    --color-surface-container: #ede9fe;
+    --color-surface-container-low: #f5f3ff;
+  }
+  .dark[data-theme="cyberpunk"] {
+    --color-primary: #c4b5fd;
+    --color-primary-container: #4f23cb;
+    --color-secondary: #a78bfa;
+    --color-surface-container: #26164f;
+    --color-surface-container-low: #1c103b;
+  }
+
+  /* Amber Warmth Theme */
+  [data-theme="amber"] {
+    --color-primary: #78350f;
+    --color-primary-container: #92400e;
+    --color-secondary: #d97706;
+    --color-surface-container: #fef3c7;
+    --color-surface-container-low: #fffbeb;
+  }
+  .dark[data-theme="amber"] {
+    --color-primary: #fde68a;
+    --color-primary-container: #78350f;
+    --color-secondary: #fbbf24;
+    --color-surface-container: #3d240d;
+    --color-surface-container-low: #2b1807;
+  }
+
+  /* High Contrast Accessibility */
+  .high-contrast {
+    --color-outline-variant: #000000;
+  }
+  .dark.high-contrast {
+    --color-outline-variant: #ffffff;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-outline-variant, #c6c5d4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-outline, #767683);
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(0.98); }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 3s infinite ease-in-out;
+}
