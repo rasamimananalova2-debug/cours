@@ -1,0 +1,6 @@
+# Supabase Configuration
+# Copiez ces valeurs dans votre fichier .env
+
+VITE_SUPABASE_URL="https://ssgtblvierbypgoguzkg.supabase.co"
+VITE_SUPABASE_ANON_KEY="sb_publishable_mt_VkUo_S32q_-QC9s9VFQ_Kwr1btZL"
+VITE_SUPABASE_SERVICE_ROLE_KEY="sb_secret_RJafSYcuWc5i_fAiWPCdrQ_guXdVDiP"
