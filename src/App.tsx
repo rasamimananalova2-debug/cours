@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { AppProvider, useApp } from './context/AppContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { FloatingEduBot } from './components/FloatingEduBot';
@@ -16,10 +17,17 @@ import { MessagesView } from './views/MessagesView';
 import { MyCoursesView } from './views/MyCoursesView';
 import { AssignmentsView } from './views/AssignmentsView';
 import { SettingsView } from './views/SettingsView';
+import { LoginView } from './views/LoginView';
 
 const MainLayout: React.FC = () => {
   const { currentView } = useApp();
+  const { isAuthenticated } = useAuth();
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
+
+  // Show login page if not authenticated
+  if (!isAuthenticated) {
+    return <LoginView />;
+  }
 
   // If in CoursePlayerView, render full screen player with its own integrated header/footer
   if (currentView === 'player') {
@@ -77,9 +85,11 @@ const MainLayout: React.FC = () => {
 export default function App() {
   return (
     <ThemeProvider>
-      <AppProvider>
-        <MainLayout />
-      </AppProvider>
+      <AuthProvider>
+        <AppProvider>
+          <MainLayout />
+        </AppProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

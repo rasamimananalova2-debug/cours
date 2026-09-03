@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../context/AuthContext';
 import {
   Search,
   Bell,
@@ -12,6 +13,7 @@ import {
   HardDriveDownload,
   Check,
   Zap,
+  LogOut,
 } from 'lucide-react';
 import { FastImage } from './FastImage';
 
@@ -30,6 +32,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleMobileMenu }) => {
     markNotificationsAsRead,
   } = useApp();
   const { isDark, toggleDarkMode } = useTheme();
+  const { user, logout } = useAuth();
 
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -190,7 +193,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleMobileMenu }) => {
               />
             </div>
             <span className="hidden sm:block font-label-sm text-[13px] text-on-surface font-semibold">
-              Alex D.
+              {user?.name || 'Utilisateur'}
             </span>
           </button>
 
@@ -202,14 +205,14 @@ export const Header: React.FC<HeaderProps> = ({ onToggleMobileMenu }) => {
               <div className="flex items-center gap-3 pb-3 border-b border-outline-variant/40">
                 <div className="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
                   <FastImage
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnJwiGsh5QMAu6kCB92k41hJ36gtddxQ8QYxE8taczb7rEPe7pOII42RKdvDr0tbl05NC85hlcQr160GXKemNKRrG3CLimHUO7FQ3Qv5vfDeSjkZTaBQvsZfxL_vPCuGwiDp_0-1AQT9-b5sFv_N6j2PxI0zdHnN2JW14ipFEfnhS5OMUdmZt7E-lN8byRVeBQZm_iXuJ3KBmW-KDr7ZdY55rNEXNbu_mDPUoBSs0t6uMe3XtD6BA2jg"
-                    alt="Alex D."
+                    src={user?.picture || "https://lh3.googleusercontent.com/aida-public/AB6AXuCnJwiGsh5QMAu6kCB92k41hJ36gtddxQ8QYxE8taczb7rEPe7pOII42RKdvDr0tbl05NC85hlcQr160GXKemNKRrG3CLimHUO7FQ3Qv5vfDeSjkZTaBQvsZfxL_vPCuGwiDp_0-1AQT9-b5sFv_N6j2PxI0zdHnN2JW14ipFEfnhS5OMUdmZt7E-lN8byRVeBQZm_iXuJ3KBmW-KDr7ZdY55rNEXNbu_mDPUoBSs0t6uMe3XtD6BA2jg"}
+                    alt={user?.name || "User"}
                     showProgressIndicator={false}
                   />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-on-surface">Alex Dupont</h4>
-                  <p className="text-xs text-on-surface-variant">alex.d@edusmart.ac</p>
+                  <h4 className="text-sm font-bold text-on-surface">{user?.name || 'Utilisateur'}</h4>
+                  <p className="text-xs text-on-surface-variant">{user?.email || 'user@example.com'}</p>
                 </div>
               </div>
               <div className="pt-3 space-y-1 text-xs font-medium">
@@ -230,6 +233,16 @@ export const Header: React.FC<HeaderProps> = ({ onToggleMobileMenu }) => {
                   className="w-full text-left py-2 px-2.5 rounded-lg hover:bg-surface-container text-on-surface transition-colors"
                 >
                   Mes certifications & Relevé
+                </button>
+                <button
+                  onClick={() => {
+                    logout();
+                    setShowProfileMenu(false);
+                  }}
+                  className="w-full text-left py-2 px-2.5 rounded-lg hover:bg-error/10 text-error transition-colors flex items-center gap-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Déconnexion
                 </button>
               </div>
             </div>
